@@ -12,6 +12,7 @@
                             <City v-model="city" :city="city" class="mb-3"/>
                             
                             <button v-if="disponibilidade()" @click.prevent="check1()" type="submit" class="btn btn-primary ">Procurar cidade</button>
+                            <button v-if="!disponibilidade()" @click.prevent="limpar()" type="submit" class="btn btn-danger ">Limpar</button>
                         </div>
                         <div class="form-group col">
                             <label for="exampleInputPassword1"><h5>Segunda Cidade</h5></label>
@@ -19,6 +20,7 @@
                             <p v-if="show2 === 'ok'" class="text-danger">Cidade inválida, digite novamente!</p>
                             <City2 v-model="city2" :city2="city2" class="mb-3"/>
                             <button v-if="disponibilidade2()" @click.prevent="check2()" type="submit" class="btn btn-primary ">Procurar cidade</button>
+                            <button v-if="!disponibilidade2()" @click.prevent="limpar2()" type="submit" class="btn btn-danger ">Limpar</button>
                         </div>
                     
                 </div>
@@ -131,7 +133,17 @@ import City2 from '@/components/City2'
                     })
                 .catch(erro => {
                     console.log(erro)})
+        },
+        limpar(){
+            this.city.name = '' 
+            this.city.ibge = ''
+        },
+        limpar2(){
+            this.city2.name = ''
+            this.city2.ibge = ''
         }
+        
+
   }
     }
   
